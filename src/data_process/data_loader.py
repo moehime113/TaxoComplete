@@ -82,7 +82,7 @@ class TaxoDataset(object):
                     tax_pairs.append((parent_taxon,child_taxon))
         term2def = pd.read_csv(def_file_name)
         term2def = term2def.replace({"label": tx_id2incrmt})[['label','summary']]
-        term2def.set_index('label')
+        term2def = term2def.set_index('label')
         self.term2def = term2def.to_dict(orient='index')
         self.taxonomy = nx.DiGraph(tax_pairs)
         self.root = [node for node in self.taxonomy.nodes() if self.taxonomy.in_degree(node) == 0]
