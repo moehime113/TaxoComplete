@@ -24,7 +24,7 @@ class Dataset():
             self.root = roots[0]
 
         self.definitions = graph_dataset.term2def
-        self.definitions[self.root] = {"label":" ","summary":" "}
+        self.definitions[self.root] = {"summary":" "}
         self.full_graph = full_graph
         try:
             cycles = nx.find_cycle(self.full_graph, orientation="original")
