@@ -14,6 +14,7 @@ class Dataset():
         full_graph = graph_dataset.taxonomy
         train_node_ids = graph_dataset.train_node_ids
         roots = graph_dataset.root
+        # if there are multiple roots, add a new root and connect it to all the original roots
         if len(roots) > 1:
             self.root = max(full_graph.nodes) + 1
             for r in roots:
@@ -21,7 +22,6 @@ class Dataset():
             train_node_ids.append(self.root)
         else:
             self.root = roots[0]
-
 
         self.definitions = graph_dataset.term2def
         self.definitions[self.root] = {"label":" ","summary":" "}
@@ -34,7 +34,7 @@ class Dataset():
             print("no cycles found")
         self.core_subgraph = self._get_holdout_subgraph(train_node_ids)
         self.pseudo_leaf_node = max(full_graph.nodes) + 1
-        self.definitions[self.pseudo_leaf_node] = {"label":" ","summary":" "}
+        self.definitions[self.pseudo_leaf_node] = {"summary":" "}
         for node in list(self.core_subgraph.nodes()):
             self.core_subgraph.add_edge(node, self.pseudo_leaf_node)
         for node in list(self.full_graph.nodes()):
