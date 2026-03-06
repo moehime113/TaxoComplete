@@ -94,10 +94,9 @@ class Dataset():
         for node in node_ids:
             label = nx.shortest_path_length(graph,self.root,node)-1
             labels[node] = label
-            if label in level2nodes:
-                level2nodes[label].append(node)
-            else:
-                level2nodes[label] = [node]
+            if label not in level2nodes:
+                level2nodes[label] = []
+            level2nodes[label].append(node)
         return labels,level2nodes
 
     def _construct_validation(self, valid_node2pos, valLevel):
