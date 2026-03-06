@@ -96,7 +96,7 @@ class TaxoDataset(object):
             self.test_node_ids = self.leaf[validation_size:(validation_size + test_size)]
             self.train_node_ids = [node_id for node_id in self.taxonomy.nodes if
                                    node_id not in self.validation_node_ids and node_id not in self.test_node_ids]
-        # 10% of all nodes for validation, 10% for test, the rest for training
+        # 10% of non-root nodes for validation, 10% for test, the rest for training
         else:
             sampled_node_ids = [node for node in self.taxonomy.nodes() if node not in self.root]
             random.shuffle(sampled_node_ids)
