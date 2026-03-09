@@ -1,0 +1,6 @@
+[INFO] Host: main-10
+[INFO] CUDA_VISIBLE_DEVICES=0
+[INFO] torch 2.1.0+cu118 cuda_available True
+start saving pickle data
+Save pickled dataset to ./data/MAG-CS-Wiki/computer_science09-Mar-2026 (12:44:19.044576).pickle.bin
+no cycles found

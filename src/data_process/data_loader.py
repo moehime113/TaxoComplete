@@ -82,6 +82,8 @@ class TaxoDataset(object):
                     tax_pairs.append((parent_taxon,child_taxon))
         term2def = pd.read_csv(def_file_name)
         term2def = term2def.replace({"label": tx_id2incrmt})[['label','summary']]
+        # Some datasets contain repeated labels; keep the first definition to build a unique index.
+        term2def = term2def.drop_duplicates(subset=['label'], keep='first')
         term2def = term2def.set_index('label')
         self.term2def = term2def.to_dict(orient='index')
         self.taxonomy = nx.DiGraph(tax_pairs)

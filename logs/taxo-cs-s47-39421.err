@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/taxo/TaxoComplete/./src/train.py", line 32, in <module>
+    data_prep = st.Dataset(taxonomy,sampling_method,neg_number,seed)
+  File "/home/taxo/TaxoComplete/src/data_process/split_data.py", line 45, in __init__
+    self.corpus, self.corpusId2nodeId = self._construct_queries(train_node_ids)
+  File "/home/taxo/TaxoComplete/src/data_process/split_data.py", line 311, in _construct_queries
+    def_corpus.append(self.definitions[queries_idx[idx]]['summary'])
+KeyError: 8
