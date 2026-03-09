@@ -26,6 +26,9 @@ class Dataset():
         self.definitions = graph_dataset.term2def
         self.definitions[self.root] = {"summary":" "}
         self.full_graph = full_graph
+        # Some nodes can be missing textual definitions in source files; keep a safe placeholder.
+        for node in self.full_graph.nodes():
+            self.definitions.setdefault(node, {"summary": " "})
         try:
             cycles = nx.find_cycle(self.full_graph, orientation="original")
             for tupl in cycles:
@@ -308,7 +311,7 @@ class Dataset():
         def_corpus = []
         corpusId2nodeId ={}
         for idx in range(len(queries_idx)):
-            def_corpus.append(self.definitions[queries_idx[idx]]['summary'])
+            def_corpus.append(self.definitions.get(queries_idx[idx], {'summary': ' '})['summary'])
             corpusId2nodeId[idx] = queries_idx[idx]
         assert len(queries_idx) == len(def_corpus)
         return def_corpus,corpusId2nodeId
