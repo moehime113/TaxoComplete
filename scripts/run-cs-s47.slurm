@@ -27,8 +27,13 @@ fi
 
 conda activate taxocomplete
 
+# Use reachable Hugging Face mirror on this cluster.
+export HF_ENDPOINT="https://hf-mirror.com"
+export HF_HUB_DISABLE_TELEMETRY=1
+
 echo "[INFO] Host: $(hostname)"
 echo "[INFO] CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
+echo "[INFO] HF_ENDPOINT=${HF_ENDPOINT}"
 python -c "import torch; print('[INFO] torch', torch.__version__, 'cuda_available', torch.cuda.is_available())"
 
 python ./src/train.py --config ./config_files/cs/config_clst20_s47.json

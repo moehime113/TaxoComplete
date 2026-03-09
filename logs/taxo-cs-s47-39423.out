@@ -1,0 +1,4 @@
+[INFO] Host: main-10
+[INFO] CUDA_VISIBLE_DEVICES=0
+[INFO] HF_ENDPOINT=https://hf-mirror.com
+[INFO] torch 2.1.0+cu118 cuda_available True
